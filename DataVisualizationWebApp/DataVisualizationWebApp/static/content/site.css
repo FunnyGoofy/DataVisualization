@@ -1,0 +1,66 @@
+body {
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 0px;
+}
+
+/* styles for validation helpers */
+.field-validation-error {
+    color: #b94a48;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+input.input-validation-error {
+    border: 1px solid #b94a48;
+}
+
+input[type="checkbox"].input-validation-error {
+    border: 0 none;
+}
+
+.validation-summary-errors {
+    color: #b94a48;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+
+.wrapper {
+    position: relative;
+    margin: 0 auto;
+    vertical-align:middle
+}
+
+.bokehdiv {
+    position: absolute;
+    padding: 10px;
+    margin: 0 auto;
+}
+
+.tabsbackgroundcolorblack {
+    background-color: aquamarine;
+}
+
+.bk-layout-fixed {
+    background-color: white;
+}
+
+.bk-widget {
+    background-color: white;
+}

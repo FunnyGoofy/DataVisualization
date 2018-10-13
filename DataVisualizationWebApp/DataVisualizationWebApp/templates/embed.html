@@ -1,0 +1,355 @@
+﻿<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Data Vasualization {{ framework }}</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.pydata.org/bokeh/release/bokeh-0.13.0.min.css" type="text/css" />
+    <script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-0.13.0.min.js"></script>
+    <script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-api-0.13.0.min.js"></script>
+    <script type="text/javascript" src="../static/scripts/datavisualization.js"></script>
+</head>
+
+<body style="font-size:14px !important; font-family: Arial !important; color: #000 !important;">
+    <div class="HeaderContainer">
+        <style scoped>
+            .HeaderContainer {
+                background-color: #000;
+                display: block;
+                font-family: Arial;
+                font-weight: normal;
+                font-size: 14px;
+                color: #5b6770;
+                text-align: left;
+                -webkit-text-size-adjust: 100%;
+                text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
+                -webkit-font-smoothing: antialiased !important;
+            }
+        </style>
+        <div class="PaneHeader clearfix">
+            <style scoped>
+                .PaneHeader {
+                    height: 70px;
+                    padding-top: 15px;
+                    box-sizing: border-box;
+                    display: inline-block;
+                    font-family: Arial;
+                    font-weight: normal;
+                    font-size: 14px;
+                    color: #5b6770;
+                    line-height: 24px;
+                    text-align: left;
+                    text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
+                    -webkit-font-smoothing: antialiased !important;
+                }
+
+                .clearfix:before {
+                    content: " ";
+                    display: table;
+                }
+
+                .clearfix:after {
+                    clear: both;
+                    content: " ";
+                    display: table;
+                }
+            </style>
+            <div class="container clearfix">
+                <style scoped>
+                    .container {
+                        max-width: 1140px;
+                        margin: 0 auto;
+                        display: block;
+                        padding: 0 30px;
+                    }
+                </style>
+                <span class="HeaderPaneDiv">
+                    <span class="HeaderPaneDiv2">
+                        <div id="_ctrl0_ctl09_divModuleContainer" class="BlankModuleContainer">
+
+                            <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+                            <!--[if lt IE 9]>
+                                <script src="//s2.q4cdn.com/639056707/files/bootstrap/js/html5shiv.js"></script>
+                            <![endif]-->
+                        </div>
+                    </span>
+                    <span class="HeaderPaneDiv3">
+                        <div id="_ctrl0_ctl12_divModuleContainer" class="ClientLogo">
+                            <style scoped>
+                                .ClientLogo {
+                                    float: left;
+                                }
+                            </style>
+                            <a href="http://www.precisiondrilling.com/Home/default.aspx" id="_ctrl0_ctl12_hrefLink">
+                                <img src="/static/ClientLogo.png" id="_ctrl0_ctl12_img1" border="0" alt="Homepage">
+                            </a>
+                            <br>
+                        </div>
+                    </span>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div id="wrapper" class="wrapper" align="center">
+        <!-- https://www.w3schools.com/howto/howto_css_loader.asp -->
+        <div id="loader" class="loader">
+            <style scoped>
+                .loader {
+                    border: 10px solid #ffffff; /* Light grey */
+                    border-top: 10px solid #10b018; /* deep green */
+                    border-radius: 50%;
+                    width: 50px;
+                    height: 50px;
+                    animation: spin 2s linear infinite;
+                    padding: 10px;
+                    position: absolute;
+                    top: 45%;
+                    left: 45%;
+                }
+
+                @keyframes spin {
+                    0% {
+                        transform: rotate(0deg);
+                    }
+
+                    100% {
+                        transform: rotate(360deg);
+                    }
+                }
+            </style>
+        </div>
+        <div id="bokehdiv" class="bokehdiv">
+            <style scoped>
+                .bk-bs-nav-tabs {
+                    display: block;
+                    font-family: Arial;
+                    font-weight: normal;
+                    text-align: left;
+                    vertical-align: initial;
+                    list-style-position: initial;
+                    list-style-type: none;
+                    white-space: nowrap;
+                    background-color: black;
+                    color: white;
+                    -webkit-text-size-adjust: 100%;
+                    text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
+                    -webkit-font-smoothing: antialiased !important;
+                }
+
+                .mainlayoutplot {
+                    max-width: 100%;
+                    width: auto\9;
+                    height: auto;
+                }
+
+                .mainlayout {
+                    text-align: left;
+                    width: 90%;
+                    height: auto;
+                    margin-right: 3%;
+                    margin: 0 auto;
+                }
+
+
+                .bk-root .bk-bs-nav-tabs > li.bk-bs-active > span {
+                    background-color: #3c823e !important;
+                    color: white !important;
+                }
+
+                .bk-root .bk-widget label {
+                    display: flex;
+                    padding-left: 0px;
+                }
+
+                .bk-root .bk-bs-checkbox {
+                    display: flex !important;
+                    min-height: 17px !important;
+                    margin-top: 10px !important;
+                    margin-bottom: 10px !important;
+                    padding-left: 30px !important;
+                }
+
+                .bk-root .bk-bs-checkbox input[type="checkbox"] {
+                    margin-left: 70px;
+                }
+
+                .sidebarmenutoplayout {
+                    background-color: white !important;
+                    color: white;
+                }
+
+                .sidebarmenumiddlelayout {
+                    display: flex !important;
+                    background-color: black !important;
+                    color: white;
+                    width: 200px !important;
+                    height: 850px !important;
+                }
+
+                .menulayout {
+                    background-color: black !important;
+                    display: block;
+                    color: white;
+                    text-align: initial;
+                    width: 200px !important;
+                }
+
+                .sidebarmenubottomlayout {
+                    display: flex !important;
+                    position: relative !important;
+                    color: white;
+                }
+
+                .sidebarlayout {
+                    text-align: left;
+                    background-color: black;
+                    width: 200px !important;
+                    position: inherit !important;
+                }
+
+                .bk-root .bk-widget-form-input {
+                    display: inline-flex;
+                    padding-top: 0px !important;
+                    padding-bottom: 0px !important;
+                    padding-left: 0px !important;
+                    padding-right: 0px !important;
+                }
+                
+                .mainplot {
+                    width:300px !important;
+                }
+
+                .version {
+                    color: black !important;
+                    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif !important;
+                    font-size: 11pt !important;
+                    text-align:initial;
+                }
+                .tabsbackgroundcolorblack {
+                    width:1400px;
+                }
+                .aboutDiv {
+                    text-align: left !important;
+                    background-color: white;
+                    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif !important;
+                    font-size: 11pt !important;
+                    padding-left: 50pt;
+                }
+
+            </style>
+            {{ script|safe }}           
+        </div>
+    </div>
+</body>
+</html>
+
+<script>
+    oldLog = console.log;
+
+    var target1 = document.getElementsByClassName('bk-bs-tab-content')
+    console.log("@@@@@@@@@@@@@@@@@@@ 33333333333333333333")
+    console.log(target1.length)
+    if (target1) {
+        console.log("@@@@@@@@@@@@@@@@@@@ 22222222222222222")
+        target2 = target1.getElementsByClassName('bk-bs-tab-pane bk-bs-active')[0]
+            .getElementsByClassName('bk-grid bk-grid-column bk-layout-scale_width')[0]
+            .getElementsByClassName('bk-grid bk-grid-column bk-layout-scale_width')[1]
+        console.log(target2)
+
+    }
+
+    window.addEventListener('load',function () {
+        console.log("ready!");
+        console.log(screen.width + 'x' + screen.height);
+        var target_6 = document.getElementsByClassName("bk-canvas")
+        if (target_6) {
+            console.log("@@@@@@@@@@@@@@@@@@@   0000000000000000000");
+            console.log(target_6.length);
+            
+        }
+
+        var target_7 = document.getElementsByClassName("bk-canvas-wrapper")
+        if (target_7) {
+            console.log("@@@@@@@@@@@@@@@@@@@   77777777777777777777");
+            console.log(target_7.length);
+
+        }
+        var target_8 = document.getElementsByClassName("bk-plot-wrapper")
+        if (target_8) {
+            console.log("@@@@@@@@@@@@@@@@@@@   8888888888888888888888");
+            console.log(target_8.length);
+
+        }
+        var mainplot_1 = document.getElementById("main_plot_id")
+        //var mainplot_1 = document.getElementById.getElementsByClassName("bk-grid bk-grid-column bk-layout-scale_width mainlayout")
+        if (mainplot_1) {
+            console.log("@@@@@@@@@@@@@@@@@@@   1111111111111111111")
+            mainplot_1.getElementsByClassName('.bk-plot-wrapper')[0]
+                .getElementsByClassName('.bk-canvas-wrapper')[0]
+                .getElementsByClassName('.bk-canvas')[0].style.width = 200
+        }
+        //console.log(document.getElementsByClassName(".bk-plot-layout .bk-layout-fixed .mainplot")[0].innerHTML)
+        var mainplot = document.getElementsByClassName("bk-plot-layout bk-layout-fixed mainplot")[0]
+        //var mainplot = document.getElementsByClassName("bk-plot-layout bk-layout-fixed mainplot")[0]
+        //var mainplot = document.getElementsByClassName("bk-plot-layout")[0].getElementsByClassName("bk-layout-fixed")[0].getElementsByClassName("mainplot")[0]
+        if (mainplot) {
+            console.log("@@@@@@@@@@@@@@@@@@@")
+
+            document.getElementsByClassName('bk-plot-layout bk-layout-fixed mainplot')[0]
+                .getElementsByClassName('bk-plot-wrapper')[0]
+                .getElementsByClassName('bk-canvas-wrapper')[0]
+                .getElementsByClassName('bk-canvas')[0].style.width = 200
+        } else {
+            console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+        }
+
+        //console.log(document.getElementsByClassName(".bk-plot-layout .bk-layout-fixed .mainplot")[0].innerHTML)
+        var mainplot = document.getElementsByClassName("mainplot")[0]
+        //var mainplot = document.getElementsByClassName("bk-plot-layout bk-layout-fixed mainplot")[0]
+        //var mainplot = document.getElementsByClassName("bk-plot-layout")[0].getElementsByClassName("bk-layout-fixed")[0].getElementsByClassName("mainplot")[0]
+        if (mainplot) {
+            console.log("@@@@@@@@@@@@@@@@@@@")
+
+            document.getElementsByClassName('.mainplot')[0]
+                .getElementsByClassName('bk-plot-wrapper')[0]
+                .getElementsByClassName('bk-canvas-wrapper')[0]
+                .getElementsByClassName('bk-canvas')[0].style.width = 200
+        } else {
+            console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+        }
+
+        //var mainplot_bk_plot_wrapper = mainplot.childNodes[0]
+        //var mainplot_bk_canvas_wrapper = mainplot_bk_plot_wrapper.getElementsByClassName('bk-canvas-wrapper')[0]
+        //var mainplot_bk_canvas = mainplot_bk_canvas_wrapper.getElementsByClassName('bk-canvas')[0]
+        //mainplot_bk_canvas.style.width = 200;
+    })
+
+    console.log = function (message) {
+        if (message !== null && message.toString().localeCompare('Bokeh items were rendered successfully') == 0) {
+            document.getElementById("loader").style.display = 'none';
+            document.getElementsByClassName('bk-widget bk-layout-fixed tabsbackgroundcolorblack')[0]
+                .getElementsByClassName("bk-bs-nav bk-bs-nav-tabs")[0]
+                .getElementsByTagName("span")[0]
+                .style.backgroundColor = 'rgb(189, 194, 188)'
+                    .style.
+
+                    document.getElementsByClassName('bk-widget bk-layout-fixed tabsbackgroundcolorblack')[0]
+                    .getElementsByClassName("bk-bs-nav bk-bs-nav-tabs")[0]
+                    .getElementsByTagName("span")[1]
+                    .style.backgroundColor = 'rgb(189, 194, 188)'
+            console.log(document.getElementsByClassName('bk-grid bk-grid-column bk-layout-fixed sidebarmenulayout')[0].innerHTML)
+            document.getElementsByClassName('bk-grid bk-grid-column bk-layout-fixed sidebarmenulayout')[0]
+                .style.backgroundColor = 'rgb(189, 194, 188)'
+
+            var mainplot = document.getElementsByClassName('bk-plot-layout bk-layout-fixed mainplot')[0]
+            console.log("@@@@@@@@@@@@@@@@@@@ 33333333333333333333")
+            if (mainplot) {
+                console.log("@@@@@@@@@@@@@@@@@@@ 22222222222222222")
+            }
+
+        }
+        oldLog.apply(console, arguments);
+    }
+</script>
